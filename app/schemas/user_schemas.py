@@ -27,7 +27,7 @@ class UserBase(BaseModel):
     nickname: Optional[str] = Field(default_factory=generate_nickname, min_length=3, pattern=r'^[\w-]+$', example=generate_nickname())
     first_name: Optional[str] = Field(default=None, example="John")
     last_name: Optional[str] = Field(default=None, example="Doe")
-    bio: Optional[str] = Field(default=None, example="Experienced software developer specializing in web applications.")
+    bio: Optional[str] = Field(default=None, example="Experienced software developer.")
     profile_picture_url: Optional[str] = Field(default=None, example="https://example.com/profiles/john.jpg")
     linkedin_profile_url: Optional[str] = Field(default=None, example="https://linkedin.com/in/johndoe")
     github_profile_url: Optional[str] = Field(default=None, example="https://github.com/johndoe")
@@ -61,18 +61,17 @@ class UserUpdate(UserBase):
         if not any(values.values()):
             raise ValueError("At least one field must be provided for update")
         return values
-    
+
     @validator("profile_picture_url")
     def validate_picture_extension(cls, url):
         if url is None:
             return url
-        # only allow typical image extensions
         if not re.search(r"\.(jpe?g|png)$", url, re.IGNORECASE):
             raise ValueError("Profile picture URL must end with .jpg, .jpeg or .png")
         return url
 
 class UserResponse(UserBase):
-    id: uuid.UUID = Field(..., example=uuid.uuid4())
+    id: uuid.UUID = Field(..., example=str(uuid.uuid4()))
     role: UserRole = Field(default=UserRole.AUTHENTICATED, example="AUTHENTICATED")
     is_professional: Optional[bool] = Field(default=False, example=True)
 
@@ -85,13 +84,7 @@ class ErrorResponse(BaseModel):
     details: Optional[str] = Field(None, example="The requested resource was not found.")
 
 class UserListResponse(BaseModel):
-    items: List[UserResponse] = Field(..., example=[{
-        "id": uuid.uuid4(), "nickname": generate_nickname(), "email": "john.doe@example.com",
-        "first_name": "John", "bio": "Experienced developer", "role": "AUTHENTICATED",
-        "last_name": "Doe", "profile_picture_url": "https://example.com/profiles/john.jpg", 
-        "linkedin_profile_url": "https://linkedin.com/in/johndoe", 
-        "github_profile_url": "https://github.com/johndoe"
-    }])
-    total: int = Field(..., example=100)
-    page: int = Field(..., example=1)
-    size: int = Field(..., example=10)
+    items: List[UserResponse]
+    total: int
+    page: int
+    size: int
