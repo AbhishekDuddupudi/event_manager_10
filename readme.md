@@ -30,10 +30,10 @@ Welcome to the **Event Manager**!  The goal was to contribute to the development
 ## 🐳 Docker and Test Logs
 
 - **Docker Image Reference Screenshot**  
-  ![Docker Image](https://github.com/AbhishekDuddupudi/event_manager_10/assets/docker_image.png)
+![Docker Image](assets/docker_image.png)
 
 - **Test Run Screenshot (Pytest)**  
-  ![Test Log](https://github.com/AbhishekDuddupudi/event_manager_10/assets/tests_log.png)
+![Test Log](assets/tests_log.png)
 
 ---
 
