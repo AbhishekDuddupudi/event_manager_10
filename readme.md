@@ -18,6 +18,7 @@ Welcome to the **Event Manager**!  The goal was to contribute to the development
 
 | Issue Number | Title                                               | Description                                                                 |
 |--------------|-----------------------------------------------------|-----------------------------------------------------------------------------|
+| [#1](https://github.com/AbhishekDuddupudi/event_manager_10/issues/1)  | Mismatched data during Login - Authentication                            | require authenticated access failed due to missing token fixtures   
 | [#3](https://github.com/AbhishekDuddupudi/event_manager_10/issues/3)  | Username Validation                              | Validates username alias field and email format                           |
 | [#5](https://github.com/AbhishekDuddupudi/event_manager_10/issues/5)  | Password Validation                              | Enforces strong password rules with regex                                 |
 | [#7](https://github.com/AbhishekDuddupudi/event_manager_10/issues/7)  | Profile Picture URL Validation                   | Adds validation for valid and secure image URLs                           |
