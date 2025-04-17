@@ -61,6 +61,15 @@ class UserUpdate(UserBase):
         if not any(values.values()):
             raise ValueError("At least one field must be provided for update")
         return values
+    
+    @validator("profile_picture_url")
+    def validate_picture_extension(cls, url):
+        if url is None:
+            return url
+        # only allow typical image extensions
+        if not re.search(r"\.(jpe?g|png)$", url, re.IGNORECASE):
+            raise ValueError("Profile picture URL must end with .jpg, .jpeg or .png")
+        return url
 
 class UserResponse(UserBase):
     id: uuid.UUID = Field(..., example=uuid.uuid4())
